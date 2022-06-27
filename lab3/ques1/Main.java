@@ -28,7 +28,7 @@ public class Main {
 		}
 		System.out.println("}");
 		
-		majorityhashmap majoH = new majorityhashmap();
+		majorityhashmap majoH = new majorityhashmap(); //Creates a new instances of majority element using hashmap class 
 		int ans = majoH.checkMajorityElement(arrayNum, N);
 		if (ans != -1)
 		{
