@@ -19,6 +19,7 @@ public class LAB9QU1 {
 		
 		selectionSort(arr);
 		InsertionSort(arr);
+		BubbleSort(arr);
 	}
 	public static void selectionSort(int arr[])
 	{
@@ -68,6 +69,33 @@ public class LAB9QU1 {
 		}
 		
 		System.out.println("Displaying Contents of Array After Insertion Sort: ");
+		for (int i = 0; i < n; i++)
+		{
+			if (i < n - 1)
+			{
+				System.out.print(arr[i] + ",");
+			}
+			else
+			{
+				System.out.print(arr[i]);
+			}
+		}
+		System.out.println("End of Contents of Array");
+	}
+	
+	public static void BubbleSort(int arr[])
+	{
+		int n = arr.length;
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (arr[j] > arr[j + 1]) {
+                    // swap arr[j+1] and arr[j]
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+        
+        System.out.println("Displaying Contents of Array After Bubble Sort: ");
 		for (int i = 0; i < n; i++)
 		{
 			if (i < n - 1)
