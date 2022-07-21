@@ -7,7 +7,8 @@ public class mainPatternMatching {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		int bruteFroceAlgorithm_SumComparisons, KMPAlgorithm_SumComparisons, boyerMooreAlgorithm_SumComparisons;
+		int bruteFroceAlgorithm_SumComparisons, KMPAlgorithm_SumComparisons, boyerMooreAlgorithm_SumComparisons; //Store the sum of Comparisons
+		int bruteFroceAlgorithm_TotalMatches, KMPAlgorithm_TotalMatches, boyerMooreAlgorithm_TotalMatches; //Store the total number of matches
 		
 		//This part of the code will go in the testing, JUNIT testing
 		String str = "AAABBAABBABABAABBABAB";
@@ -75,6 +76,8 @@ public class mainPatternMatching {
 		KMPAlgorithm_SumComparisons = 0;
 		boyerMooreAlgorithm_SumComparisons = 0;
 		
+		bruteFroceAlgorithm_TotalMatches = 0;
+		
 		try {
 			BufferedReader filereader = new BufferedReader(new FileReader("C:\\Users\\Ramhit\\eclipse-workspace\\2019Y Lab\\lab18_PatternMatching\\patternMatching.txt"));
 			
@@ -86,7 +89,7 @@ public class mainPatternMatching {
 			System.out.println("\t2. KMP Algorithm.");
 			System.out.println("\t3. Boyer Moore Algorithm.");
 			System.out.println("===========================Enter Choice:================");
-			choice = 3;		//Choice is hardcoded for now.
+			choice = 3;		//Choice is hardcoded for now. //Change from here is needed to show the different 
 			
 			while((line = filereader.readLine()) != null) {
 				lineCounter++;
@@ -97,6 +100,7 @@ public class mainPatternMatching {
 				//Running the line through the Brute Force Algorithm
 					bruteForceSearch.search(line, pattern);
 					bruteFroceAlgorithm_SumComparisons += bruteForceSearch.getCurrentComparisonCountNumber();
+					bruteFroceAlgorithm_TotalMatches += bruteForceSearch.getCurrentMatchCountNumber(); //returns the number of matches obtained
 					System.out.println("Comparisons were made : " + bruteForceSearch.getCurrentComparisonCountNumber() + " times.");
 					if (bruteForceSearch.getCurrentMatchCountNumber() > 0)
 					{

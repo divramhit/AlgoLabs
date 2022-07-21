@@ -10,5 +10,9 @@
 	<classpathentry kind="src" path="lab9"/>
 	<classpathentry kind="src" path="lab10"/>
 	<classpathentry kind="src" path="lab18_PatternMatching"/>
+	<classpathentry kind="src" path="lab11"/>
+	<classpathentry kind="src" path="lab12_PriorityQueueAndHeapSort"/>
+	<classpathentry kind="src" path="lab14_Trees"/>
+	<classpathentry kind="src" path="lab16_Hashing"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
