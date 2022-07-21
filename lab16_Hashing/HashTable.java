@@ -31,19 +31,26 @@ public class HashTable {
     public int get(String nickname){
         int initialPosition = hashValue(nickname);      
         int currentPosition = initialPosition;
-
-        if (!hashTable[initialPosition].getNickname().equals(nickname)){
-            currentPosition = (currentPosition + 1) % this.size;
-
-            while(currentPosition != initialPosition){
-                if (hashTable[currentPosition].getNickname().equals(nickname)){
-                    return currentPosition;
-                }
-            }
-        } else {
-            return initialPosition;
+        
+        if (this.hashTable[initialPosition] == null || this.hashTable[currentPosition] == null) {
+        	
+//        	System.out.println("Not found");
+        	return -1;
         }
+        else {
 
+	        if (!hashTable[initialPosition].getNickname().equals(nickname)){
+	            currentPosition = (currentPosition + 1) % this.size;
+	
+	            while(currentPosition != initialPosition){
+	                if (hashTable[currentPosition].getNickname().equals(nickname)){
+	                    return currentPosition;
+	                }
+	            }
+	        } else {
+	            return initialPosition;
+	        }
+        }
         return -1;
     }
 
@@ -51,8 +58,8 @@ public class HashTable {
         return -1;
     }
     
-    public String getNickname(int index) {
-    	return this.hashTable[index].getNickname();
+    public String getRealStringName(int index) {
+    	return this.hashTable[index].getRealName();
     }
 
     public void printTable(){

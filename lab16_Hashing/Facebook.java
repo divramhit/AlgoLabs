@@ -65,7 +65,7 @@ public class Facebook {
             hastTable_NickName_pos = hashTable.get(line);
             
             if (hastTable_NickName_pos >= 0) {
-            	hashTable.getNickname(hastTable_NickName_pos);
+            	System.out.println(hashTable.getRealStringName(hastTable_NickName_pos));
             }
             else if(hastTable_NickName_pos == -1){
             	System.out.println("impostor!!!");
