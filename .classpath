@@ -14,5 +14,6 @@
 	<classpathentry kind="src" path="lab12_PriorityQueueAndHeapSort"/>
 	<classpathentry kind="src" path="lab14_Trees"/>
 	<classpathentry kind="src" path="lab16_Hashing"/>
+	<classpathentry kind="src" path="lab_DST"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
