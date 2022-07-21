@@ -7,7 +7,9 @@ public class mainPatternMatching {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
+		int bruteFroceAlgorithm_SumComparisons, KMPAlgorithm_SumComparisons, boyerMooreAlgorithm_SumComparisons;
 		
+		//This part of the code will go in the testing, JUNIT testing
 		String str = "AAABBAABBABABAABBABAB";
 		String pattern = "ABAB";
 		
@@ -15,17 +17,47 @@ public class mainPatternMatching {
 		kmpSearch KMPSearch = new kmpSearch();
 		boyerMooreAlgorithm BoyerMooreSearch = new boyerMooreAlgorithm();
 		
+		//START: Brute Force Algorithm
 		System.out.println("Searching with BruteForce Algorithm:");
 		bruteForceSearch.search(str, pattern);
+		if (bruteForceSearch.getCurrentMatchCountNumber() > 0)
+		{
+			System.out.println("Pattern Match found " + bruteForceSearch.getCurrentMatchCountNumber() + " times");
+			System.out.println("Patterns started at Index(es): " + bruteForceSearch.getCurrentPatternStart());
+		}
+		else {
+			System.out.println("No Pattern Match found");
+		}
 		System.out.println("");
+		//END: Brute Force Algorithm
 		
+		//START: KMP Algorithm
 		System.out.println("Searching with KMP Algorithm:");
 		KMPSearch.search(str, pattern);
+		if (bruteForceSearch.getCurrentMatchCountNumber() > 0)
+		{
+			System.out.println("Pattern Match found " + bruteForceSearch.getCurrentMatchCountNumber() + " times");
+			System.out.println("Patterns started at Index(es): " + bruteForceSearch.getCurrentPatternStart());
+		}
+		else {
+			System.out.println("No Pattern Match found");
+		}
 		System.out.println("");
+		//END: KMP Algorithm
 		
+		//START: BOYER MOORE Algorithm
 		System.out.println("Searching with Boyer-Moore Algorithm:");
 		BoyerMooreSearch.search(str, pattern);
+		if (bruteForceSearch.getCurrentMatchCountNumber() > 0)
+		{
+			System.out.println("Pattern Match found " + bruteForceSearch.getCurrentMatchCountNumber() + " times");
+			System.out.println("Patterns started at Index(es): " + bruteForceSearch.getCurrentPatternStart());
+		}
+		else {
+			System.out.println("No Pattern Match found");
+		}
 		System.out.println("");
+		//END: BOYER MOORE Algorithm
 		
 //		Labsheet18 Question Start
 		
@@ -39,19 +71,88 @@ public class mainPatternMatching {
 		
 		pattern = "QPNE";	
 		int lineCounter = 0;
+		bruteFroceAlgorithm_SumComparisons = 0;
+		KMPAlgorithm_SumComparisons = 0;
+		boyerMooreAlgorithm_SumComparisons = 0;
 		
 		try {
 			BufferedReader filereader = new BufferedReader(new FileReader("C:\\Users\\Ramhit\\eclipse-workspace\\2019Y Lab\\lab18_PatternMatching\\patternMatching.txt"));
 			
 			String line;
+			int choice = 0;
+			
+			System.out.println("===========================Main Menu================");
+			System.out.println("\t1. Brute Force Algorithm.");
+			System.out.println("\t2. KMP Algorithm.");
+			System.out.println("\t3. Boyer Moore Algorithm.");
+			System.out.println("===========================Enter Choice:================");
+			choice = 3;		//Choice is hardcoded for now.
 			
 			while((line = filereader.readLine()) != null) {
 				lineCounter++;
 				System.out.print("Line :" + lineCounter + " ");
-				bruteForceSearch.search(line, pattern);
 				
-				//Change the Search Algorithms to enable adding and fit this question add a function to return number of times matching occurred
-				//Need to account for number of comparisons done as well 
+				if (choice == 1)
+				{
+				//Running the line through the Brute Force Algorithm
+					bruteForceSearch.search(line, pattern);
+					bruteFroceAlgorithm_SumComparisons += bruteForceSearch.getCurrentComparisonCountNumber();
+					System.out.println("Comparisons were made : " + bruteForceSearch.getCurrentComparisonCountNumber() + " times.");
+					if (bruteForceSearch.getCurrentMatchCountNumber() > 0)
+					{
+						//System.out.println("Pattern Match found " + patMatch_count + " times.");
+						System.out.println("Pattern Match found " + bruteForceSearch.getCurrentMatchCountNumber() + " times");
+						System.out.println("Patterns started at Index(es): " + bruteForceSearch.getCurrentPatternStart());
+					}
+					else {
+						System.out.println("No Pattern Match found");
+					}
+				//End of Brute Force Algorithm
+				}	
+				else if(choice == 2)
+				{
+				//Running the line through the KMP Algorithm
+					KMPSearch.search(line, pattern);
+					KMPAlgorithm_SumComparisons += KMPSearch.getCurrentComparisonCountNumber();
+					System.out.println("Comparisons were made : " + KMPSearch.getCurrentComparisonCountNumber() + " times.");
+					if (KMPSearch.getCurrentMatchCountNumber() > 0)
+					{
+						//System.out.println("Pattern Match found " + patMatch_count + " times.");
+						System.out.println("Pattern Match found " + KMPSearch.getCurrentMatchCountNumber() + " times");
+					}
+					else {
+						System.out.println("No Pattern Match found");
+					}
+				//End of KMP Algorithm
+				}
+				else if(choice == 3) 
+				{
+					
+				//Running the line through the BOYER MOORE Algorithm
+					BoyerMooreSearch.search(line, pattern);
+					boyerMooreAlgorithm_SumComparisons += BoyerMooreSearch.getCurrentComparisonCountNumber();
+					System.out.println("Comparisons were made : " + BoyerMooreSearch.getCurrentComparisonCountNumber() + " times.");
+					if (BoyerMooreSearch.getCurrentMatchCountNumber() > 0)
+					{
+						//System.out.println("Pattern Match found " + patMatch_count + " times.");
+						System.out.println("Pattern Match found " + BoyerMooreSearch.getCurrentMatchCountNumber() + " times");
+					}
+					else {
+						System.out.println("No Pattern Match found");
+					}
+				//End of BOYER MOORE Algorithm
+				}
+					
+			}
+			
+			if (choice == 1){
+				System.out.println("Total No of Comparisons made for whole using Brute Force :" + bruteFroceAlgorithm_SumComparisons);
+			}
+			else if(choice == 2) {
+				System.out.println("Total No of Comparisons made for whole using KMP :" + KMPAlgorithm_SumComparisons);
+			}
+			else if(choice == 3) {
+				System.out.println("Total No of Comparisons made for whole using BOYER MOORE :" + boyerMooreAlgorithm_SumComparisons);
 			}
 			
 			

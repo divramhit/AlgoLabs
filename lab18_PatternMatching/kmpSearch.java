@@ -1,5 +1,9 @@
+import java.util.ArrayList;
 
 public class kmpSearch {
+	private ArrayList<Integer>patternMatchIndexes = new ArrayList<Integer>(); //Stores the starting Points of each Match
+	private int patMatch_count;  //counts the number of times the pattern matched with the string
+	private int comparison_count; //Counts the number of times a comparison was made with the current string
 	
 	public kmpSearch() {
 		
@@ -7,6 +11,7 @@ public class kmpSearch {
 	
 	//Improved KMP Searching for multiple Pattern Matching instances
 	public void search(String str, String pattern) {
+		patternMatchIndexes.clear();
 		
 		char[] char_str = str.toCharArray();
 		char[] char_pat = pattern.toCharArray();
@@ -18,38 +23,41 @@ public class kmpSearch {
 		
 		int i = 0;
 		int j = 0;
-		int patMatch_count = 0;
+		patMatch_count = 0; //resets the pattern count each time a new String is introduced
+		comparison_count = 0; //resets the comparison counter each time a new String is introduced
 		
 		while (i < strLength) {
 			if (char_pat[j] == char_str[i]) {
+				comparison_count++;
+				
 				if (j == patLength - 1) {
-					System.out.println("Pattern Match found at : " + (i - patLength + 1));
+					comparison_count++;
+					//System.out.println("Pattern Match found at : " + (i - patLength + 1));
+					setCurrentPatternStart((i - patLength + 1));
 					patMatch_count++;
 					//return;
 				}
 				
 				i++;
 				
-				if (j < patLength - 1) {
+				if (j < patLength - 1) { //Change added here to allow for more pattern matching as leaving it as it was causes index out of bounds error
+					comparison_count++;
 					j++;
 				}
 				
 			}
 			else if(j > 0) {
+				comparison_count++;
 				j = fail[j - 1];
 			}
 			else {
+				comparison_count++;
 				i++;
 			}
+			
+			comparison_count++;
 		}
-		
-		if (patMatch_count > 0)
-		{
-			System.out.println("Pattern Match found " + patMatch_count + " times.");
-		}
-		else {
-			System.out.println("No Pattern Match found");
-		}
+
 		return;
 	}
 	
@@ -83,5 +91,22 @@ public class kmpSearch {
 		
 		return fail;
  	}
+	
+	
+	public int getCurrentMatchCountNumber() { //Returns the current Matched pattern count OF the current string
+		return this.patMatch_count;
+	}
+	
+	public void setCurrentPatternStart(int index) { //Take the index obtained of a pattern that was matched and returns it 
+		this.patternMatchIndexes.add(index);
+	}
+	
+	public ArrayList<Integer> getCurrentPatternStart() {
+		return this.patternMatchIndexes;
+	}
+	
+	public int getCurrentComparisonCountNumber() { //Returns the amount of comparisons made for the current String
+		return this.comparison_count;
+	}
 
 }
