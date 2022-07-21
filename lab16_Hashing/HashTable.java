@@ -29,7 +29,7 @@ public class HashTable {
     }
 
     public int get(String nickname){
-        int initialPosition = hashValue(nickname);
+        int initialPosition = hashValue(nickname);      
         int currentPosition = initialPosition;
 
         if (!hashTable[initialPosition].getNickname().equals(nickname)){
@@ -49,6 +49,10 @@ public class HashTable {
 
     public int remove(String nickname){
         return -1;
+    }
+    
+    public String getNickname(int index) {
+    	return this.hashTable[index].getNickname();
     }
 
     public void printTable(){
